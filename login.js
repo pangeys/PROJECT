@@ -16,9 +16,5 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         msg.style.color = "red";
         msg.textContent = "Invalid username or password.";
     }
-    
-    document.querySelector(".signup-btn").addEventListener("click", function() {
-    window.location.href = "signup.html";
-    });
 
 });
