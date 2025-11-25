@@ -1,0 +1,244 @@
+@import url('https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Optima;
+}
+
+#bgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.main {
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(11.mp4);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    width: 1200px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.icon {
+    width: 250px;
+}
+
+.logo {
+    color: #ff7200;
+    font-size: 35px;
+    padding-top: 50px;
+}
+
+.menu {
+    flex: 1;
+    margin-left: 50px;
+    padding-top: 15px;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    gap: 60px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+    font-size: 17px;
+}
+
+.menu ul li a:hover {
+    color: #ff7200;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.menu ul li a.active {
+    color: #ff7200;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.form {
+    width: 400px;
+    background: transparent;
+    border: 2px solid #ff7200;
+    backdrop-filter: blur(13px);
+    border-radius: 10px;
+    padding: 30px 35px;
+    box-shadow: 0 0 10px #0000001a;
+    margin: 40px auto;
+    font-family: Optima;
+    color: #fff;
+}
+
+h2 {
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    font-family: Optima;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 55px;
+    margin: 10px 0;
+    font-family: Optima;
+}
+
+.input-box input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 0 20px;
+    padding-right: 50px;
+    color: #fff;
+    border: 2px solid #ff7200;
+    border-radius: 5px;
+    font-family: Optima !important;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    font-family: Optima;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff !important;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.btnn {
+    display: inline-block;
+    background: #ff7200;
+    color: #000;
+    width: 100%;
+    border-radius: 30px;
+    height: 45px;
+    border: none;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 30px;
+    box-shadow: 0 0 5px #ff7200;
+    font-family: Optima;
+}
+
+.btnn:hover {
+    background: #fff;
+    color: #ff7200;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.login-link a {
+    text-decoration: none;
+    color: #ff7200;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #fff;
+}
+
+input[type="checkbox"] {
+    accent-color: #ff7200;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+    .navbar {
+        width: auto;
+    }
+    
+    .menu ul {
+        gap: 30px;
+    }
+    
+    .form {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+.fade-out {
+    position: relative;
+    animation: fadeOutBlack 0.3s forwards ease-in-out;
+}
+
+@keyframes fadeOutBlack {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.fade-out::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    animation: overlayFade 0.3s forwards;
+    z-index: 9999;
+}
+
+@keyframes overlayFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
