@@ -3,6 +3,13 @@
 <head>
     <title>Sign Up - Future Path</title>
     <link rel="stylesheet" href="style(signup).css">
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="main" id="page">
@@ -25,33 +32,38 @@
             </div>
         </div>
 
-        <div class="form">
+        <form id="signupForm" class="form">
             <h2>Sign Up</h2>
             <div class="input-box">
                 <input type="text" placeholder="Full Name" required>
                 <i class="ri-user-fill"></i>
+                <div class="error" id="fullNameError"></div>
             </div>
             <div class="input-box">
                 <input type="email" placeholder="Email" required>
                 <i class="ri-mail-fill"></i>
+                <div class="error" id="emailError"></div>
             </div>
             <div class="input-box">
                 <input type="text" placeholder="Username" required>
                 <i class="ri-user-line"></i>
+                <div class="error" id="usernameError"></div>
             </div>
             <div class="input-box">
                 <input type="password" id="Password" placeholder="Password" autocomplete="off" required>
                 <i class="ri-eye-off-fill" id="togglePassword"></i>
+                <div class="error" id="passwordError"></div>
             </div>
             <div class="input-box">
                 <input type="password" id="ConfirmPassword" placeholder="Confirm Password" autocomplete="off" required>
                 <i class="ri-eye-off-fill" id="toggleConfirmPassword"></i>
+                <div class="error" id="confirmPasswordError"></div>
             </div>
             <button type="submit" class="btnn">Sign Up</button>
             <div class="login-link">
                 Already have an account? <a href="Nicole(Home).html">Login</a>
             </div>
-        </div>
+        </form>
     </div>
 
     <script src="toggle.js"></script>
@@ -99,6 +111,61 @@
             this.classList.toggle('ri-eye-fill');
         });
     }
+
+    // Form validation
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Clear previous errors
+        document.getElementById('fullNameError').textContent = '';
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('usernameError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+        document.getElementById('confirmPasswordError').textContent = '';
+
+        // Get values
+        const fullName = document.querySelector('input[placeholder="Full Name"]').value.trim();
+        const email = document.querySelector('input[placeholder="Email"]').value.trim();
+        const username = document.querySelector('input[placeholder="Username"]').value.trim();
+        const password = document.getElementById('Password').value;
+        const confirmPassword = document.getElementById('ConfirmPassword').value;
+
+        let isValid = true;
+
+        // Check for empty fields
+        if (fullName === '') {
+            document.getElementById('fullNameError').textContent = 'Full Name is required.';
+            isValid = false;
+        }
+        if (email === '') {
+            document.getElementById('emailError').textContent = 'Email is required.';
+            isValid = false;
+        }
+        if (username === '') {
+            document.getElementById('usernameError').textContent = 'Username is required.';
+            isValid = false;
+        }
+        if (password === '') {
+            document.getElementById('passwordError').textContent = 'Password is required.';
+            isValid = false;
+        }
+        if (confirmPassword === '') {
+            document.getElementById('confirmPasswordError').textContent = 'Confirm Password is required.';
+            isValid = false;
+        }
+
+        // Check if passwords match
+        if (password !== '' && confirmPassword !== '' && password !== confirmPassword) {
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+            isValid = false;
+        }
+
+        if (isValid) {
+            // If valid, you can proceed with form submission or show success
+            alert('Sign up successful!'); // Replace with actual submission logic
+            // For example: this.submit();
+        }
+    });
     </script>
 </body>
 </html>

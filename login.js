@@ -8,13 +8,13 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     let correctUser = "admin";
     let correctPass = "1234";
 
-    if (user === correctUser && pass === correctPass) {
-        msg.style.color = "green";
-        msg.textContent = "Login successful!";
-        // window.location.href = "dashboard.html";
-    } else {
-        msg.style.color = "red";
-        msg.textContent = "Invalid username or password.";
+    if(user === correctUser && pass === correctPass) {
+        alert('Login successful!');
+    }   
+    if(user == "" && pass == ""){
+        alert('Please input Username and Password!');
     }
-
+    else if(user !== correctUser || pass !== correct){ 
+        alert('Incorect username or password.');
+    }  
 });
