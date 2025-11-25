@@ -35,7 +35,7 @@ body {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 100px;
 }
 
 .icon {
@@ -50,32 +50,41 @@ body {
 
 .menu {
     flex: 1;
-    margin-left: 50px;
+    margin-left: 10px;
     padding-top: 15px;
 }
 
 .menu ul {
     display: flex;
     list-style: none;
-    gap: 60px;
+    gap: 90px;
+    background: transparent;
+    backdrop-filter: blur(13px);
+    border: 2px solid #ff7200;
+    box-shadow: 0 0 10px #0000001a;
+    border-radius: 10px;
+    padding: 10px 80px;
+    max-width: 700px;       
+    margin: 0 auto;  
 }
+
 
 .menu ul li a {
     text-decoration: none;
-    color: #fff;
+    color: #ff7200;
     transition: 0.3s ease-in-out;
     font-size: 17px;
 }
 
 .menu ul li a:hover {
-    color: #ff7200;
-    font-size: 19px;
+    color: #fff;
+    font-size: 25px;
     font-weight: bold;
 }
 
 .menu ul li a.active {
-    color: #ff7200;
-    font-size: 19px;
+    color: #fff;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -91,6 +100,7 @@ body {
     font-size: 50px;
     letter-spacing: 2px;
     line-height: 1;
+    padding-top: 35px;
 }
 
 .content span {
@@ -292,6 +302,83 @@ input[type="checkbox"]{
     cursor: pointer;   
 }
 
+.hamburger {
+    display: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: #ff7200;
+    margin-left: 20px;
+    padding-top: 15px;
+    transition: 0.3s ease;
+}
+
+.hamburger:hover {
+    color: #fff;
+    font-size: 50px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -270px;
+    width: 250px;
+    height: 100vh;
+    background: transparent;
+    backdrop-filter: blur(13px);
+    border-left: 2px solid #ff7200;
+    box-shadow: 0 0 10px #0000001a;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px;
+    gap: 30px;
+    transition: 0.5s ease;
+    z-index: 9999;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #ff7200;
+    transition: 0.3s ease-in-out;
+    font-size: 20px;
+}
+
+.sidebar a:hover {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.sidebar.active {
+    right: 0;
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ff7200;
+    cursor: pointer;
+    font-size: 40px;
+    transition: 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #fff;
+    font-size: 50px;
+}
+
+@media screen and (max-width: 950px) {
+    .menu ul {
+        display: none;
+    }
+    .hamburger {
+        display: block;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .navbar {
         width: auto;
@@ -311,19 +398,8 @@ input[type="checkbox"]{
 }
 
 .fade-out {
-    position: relative;
-    animation: fadeOutBlack 0.3s forwards ease-in-out;
-}
-
-@keyframes fadeOutBlack {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
 }
 
 .fade-out::after {
@@ -335,11 +411,12 @@ input[type="checkbox"]{
     height: 100%;
     background-color: black;
     opacity: 0;
-    animation: overlayFade 0.3s forwards;
+    animation: overlayFade 0.6s forwards;
+    pointer-events: none;
     z-index: 9999;
 }
 
 @keyframes overlayFade {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
