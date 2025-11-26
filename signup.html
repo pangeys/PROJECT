@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+    <div id="pageTransition"></div>
     <div class="main" id="page">
         <video autoplay muted loop playsinline id="bgVideo">
             <source src="11.mp4" type="video/mp4">
@@ -26,9 +27,21 @@
                 <ul>
                     <li><a href="Nicole(Home).html">HOME</a></li>
                     <li><a href="Airon(Course).html">COURSE</a></li>
-                    <li><a href="Darrel(AboutUs).html">ABOUT</a></li>
-                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="Nicole(Home).html#about">ABOUT</a></li>
+                    <li><a href="Marco(ContactUs).html">CONTACT</a></li>
                 </ul>
+            </div>
+
+            <div class="hamburger">
+                <i class="ri-menu-line"></i>
+            </div>
+
+            <div class="sidebar" id="sidebarMenu">
+                <div class="close-btn"><i class="ri-close-line"></i></div>
+                <a href="Nicole(Home).html">HOME</a>
+                <a href="Airon(Course).html">COURSE</a>
+                <a href="#Nicole(Home).html#about">ABOUT</a>
+                <a href="Marco(ContactUs).html">CONTACT</a>
             </div>
         </div>
 
@@ -67,22 +80,65 @@
     </div>
 
     <script src="toggle.js"></script>
+    
+    <script>
+    const input = document.getElementById('Password');
+    const toggle = document.getElementById('togglePassword');
+
+    toggle.addEventListener('click',
+        () => {
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            toggle.className = isPassword ? 'ri-eye-fill' 
+            : 'ri-eye-off-fill';
+        }
+    );
+
+    const confirmInput = document.getElementById('ConfirmPassword');
+    const confirmToggle = document.getElementById('toggleConfirmPassword');
+
+    confirmToggle.addEventListener('click',
+        () => {
+            const isPassword = confirmInput.type === 'password';
+            confirmInput.type = isPassword ? 'text' : 'password';
+            confirmToggle.className = isPassword ? 'ri-eye-fill' 
+            : 'ri-eye-off-fill';
+        }
+    );
+    </script>
+    
+    <script>
+        const sidebar = document.getElementById("sidebarMenu");
+        const hamburger = document.querySelector(".hamburger");
+        const closeBtn = document.querySelector(".close-btn");
+
+        hamburger.addEventListener("click", () => {
+            sidebar.classList.add("active");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.remove("active");
+    });
+    </script>
 
     <script>
-    const links = document.querySelectorAll("a");
+    const links = document.querySelectorAll('a');
+    const transition = document.getElementById('pageTransition');
+
     links.forEach(link => {
-        link.addEventListener("click", function (e) {
-        const destination = this.href;
+        // Ignore anchor links
+        if(link.getAttribute('href').startsWith('#')) return;
 
-        if (destination.includes("#")) return;
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
 
-        e.preventDefault();
+            transition.classList.add('show');
 
-        document.getElementById("page").classList.add("fade-out");
-
-        setTimeout(() => {
-            window.location.href = destination;
-        }, 600); 
+            // Wait for the animation to finish before navigating
+            setTimeout(() => {
+                window.location.href = href;
+            }, 800); // same duration as CSS transition
         });
     });
 
@@ -111,61 +167,7 @@
             this.classList.toggle('ri-eye-fill');
         });
     }
-
-    // Form validation
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Clear previous errors
-        document.getElementById('fullNameError').textContent = '';
-        document.getElementById('emailError').textContent = '';
-        document.getElementById('usernameError').textContent = '';
-        document.getElementById('passwordError').textContent = '';
-        document.getElementById('confirmPasswordError').textContent = '';
-
-        // Get values
-        const fullName = document.querySelector('input[placeholder="Full Name"]').value.trim();
-        const email = document.querySelector('input[placeholder="Email"]').value.trim();
-        const username = document.querySelector('input[placeholder="Username"]').value.trim();
-        const password = document.getElementById('Password').value;
-        const confirmPassword = document.getElementById('ConfirmPassword').value;
-
-        let isValid = true;
-
-        // Check for empty fields
-        if (fullName === '') {
-            document.getElementById('fullNameError').textContent = 'Full Name is required.';
-            isValid = false;
-        }
-        if (email === '') {
-            document.getElementById('emailError').textContent = 'Email is required.';
-            isValid = false;
-        }
-        if (username === '') {
-            document.getElementById('usernameError').textContent = 'Username is required.';
-            isValid = false;
-        }
-        if (password === '') {
-            document.getElementById('passwordError').textContent = 'Password is required.';
-            isValid = false;
-        }
-        if (confirmPassword === '') {
-            document.getElementById('confirmPasswordError').textContent = 'Confirm Password is required.';
-            isValid = false;
-        }
-
-        // Check if passwords match
-        if (password !== '' && confirmPassword !== '' && password !== confirmPassword) {
-            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
-            isValid = false;
-        }
-
-        if (isValid) {
-            // If valid, you can proceed with form submission or show success
-            alert('Sign up successful!'); // Replace with actual submission logic
-            // For example: this.submit();
-        }
-    });
     </script>
+
 </body>
 </html>

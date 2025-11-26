@@ -1,5 +1,5 @@
 document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // prevent refresh
+    e.preventDefault();
 
     let user = document.getElementById("username").value;
     let pass = document.getElementById("password").value;
