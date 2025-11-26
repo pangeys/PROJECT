@@ -1,5 +1,5 @@
 document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // prevent refresh
+    e.preventDefault();
 
     let user = document.getElementById("username").value;
     let pass = document.getElementById("password").value;
@@ -8,12 +8,10 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     let correctUser = "admin";
     let correctPass = "1234";
 
-    if (user === correctUser && pass === correctPass) {
-        msg.style.color = "green";
-        msg.textContent = "Login successful!";
-        // window.location.href = "dashboard.html";
-    } else {
-        msg.style.color = "red";
-        msg.textContent = "Invalid username or password.";
-    }
+    if(user === correctUser && pass === correctPass) {
+        alert('Login successful!');
+    }   
+    else if(user !== correctUser || pass !== correct){ 
+        alert('Incorect username or password.');
+    }  
 });
